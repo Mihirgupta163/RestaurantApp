@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/menu_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryVariant"
+        app:titleTextColor="@color/white"
+        app:title="@string/app_name"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cuisine"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Top Products"
+        android:textColor="#302F2F"
+        android:textSize="20sp"
+        android:padding="5dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/top_orders"
+        android:layout_marginStart="5dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

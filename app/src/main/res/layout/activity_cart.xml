@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cart">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/cart_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryVariant"
+        app:titleTextColor="@color/white"
+        app:title="Cart"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_below="@id/cart_toolbar"
+        android:layout_above="@id/Order_Now_Button"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/Order_Now_Button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Order Now"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:background="#009688"
+        android:layout_margin="5dp"
+        />
+</RelativeLayout>

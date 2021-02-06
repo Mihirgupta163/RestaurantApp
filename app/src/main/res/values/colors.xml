@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryVariant">#FF5722</color>
+
+    <!--    color for the list background-->
+    <color name="list_color1">#DFCFCF</color>
+    <color name="list_color2">#DFF3DA</color>
+    <color name="list_color3">#EDE8CC</color>
+    <color name="list_color4">#DFEFFA</color>
+    <color name="list_color5">#F1E5DC</color>
+    <color name="list_color6">#E1E4D6</color>
+    <color name="list_color7">#D8DFF1</color>
+</resources>
