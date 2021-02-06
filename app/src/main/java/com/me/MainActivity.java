@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.me.adapters.CuisinesAdapter;
 import com.me.adapters.Top_Product_Adapter;
 import com.me.pojo.Category_Items;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
     ArrayList<Cuisines_Items> cuisines_items;
     ArrayList<Category_Items> items;
     Top_Product_Adapter adapter;
+    int currentItems, totalItems, scrollOutItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +62,24 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
 
         cuisinesAdapter = new CuisinesAdapter(MainActivity.this,cuisines_items, MainActivity.this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if(dx == cuisines_items.size()){
-                    recyclerView.getLayoutManager().scrollToPosition(0);
+                currentItems = layoutManager.getChildCount();
+                totalItems = layoutManager.getItemCount();
+                scrollOutItem = layoutManager.findFirstVisibleItemPosition();
+
+                if(scrollOutItem + currentItems == totalItems){
+                    recyclerView.getLayoutManager().scrollToPosition((int)(Integer.MAX_VALUE/2f));
+                    cuisinesAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -100,6 +114,6 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
 
     @Override
     public void itemClicked(int position) {
-
+        Snackbar.make(findViewById(android.R.id.content),items.get(position).getName()+" added to Cart",Snackbar.LENGTH_SHORT).show();
     }
 }

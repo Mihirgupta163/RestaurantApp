@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.me.R;
@@ -39,7 +40,7 @@ public class CuisinesAdapter extends RecyclerView.Adapter <CuisinesAdapter.MainA
 
     @Override
     public void onBindViewHolder(@NonNull MainAdapter_Holder holder, int position) {
-        Cuisines_Items item = list.get(position);
+        Cuisines_Items item = list.get(position % list.size());
         holder.main_name.setText(item.getName());
         holder.main_image.setImageResource(item.getImage_Id());
 
@@ -58,11 +59,11 @@ public class CuisinesAdapter extends RecyclerView.Adapter <CuisinesAdapter.MainA
         holder.main_card_view.setCardBackgroundColor(color);
     }
 
+
     @Override
     public int getItemCount() {
-        return list.size();
+        return Integer.MAX_VALUE;
     }
-
 
 
     public class MainAdapter_Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -85,8 +86,8 @@ public class CuisinesAdapter extends RecyclerView.Adapter <CuisinesAdapter.MainA
         @Override
         public void onClick(View v) {
             if(mListener !=null){
-                int position=getAdapterPosition();
-                String name = list.get(position).getName();
+                int position=getAdapterPosition()% list.size();
+                String name = list.get(position ).getName();
                 if(position !=RecyclerView.NO_POSITION){
                     mListener.onItemClick(position,name);
                 }
