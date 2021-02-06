@@ -34,7 +34,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/top_orders"
-        android:layout_marginStart="5dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content"/>

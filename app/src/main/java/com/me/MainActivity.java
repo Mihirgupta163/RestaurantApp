@@ -12,24 +12,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.me.adapters.CuisinesAdapter;
+import com.me.adapters.Top_Product_Adapter;
 import com.me.pojo.Category_Items;
 import com.me.pojo.Cuisines_Items;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements CuisinesAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements CuisinesAdapter.OnItemClickListener, Top_Product_Adapter.ClickItem {
 
     Toolbar toolbar;
     RecyclerView recyclerView, top_products;
     CuisinesAdapter cuisinesAdapter;
     ArrayList<Cuisines_Items> cuisines_items;
     ArrayList<Category_Items> items;
+    Top_Product_Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cuisines_items = new ArrayList<>();
+        items = new ArrayList<>();
 
         top_products = findViewById(R.id.top_orders);
         recyclerView = findViewById(R.id.cuisine);
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
         cuisines_items.add( new Cuisines_Items("Chinese",R.drawable.chinesefood));
         cuisines_items.add( new Cuisines_Items("Italian",R.drawable.italian_cuisine));
 
+        adapter = new Top_Product_Adapter(MainActivity.this,items,MainActivity.this);
+
         cuisinesAdapter = new CuisinesAdapter(MainActivity.this,cuisines_items, MainActivity.this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -66,6 +71,9 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
         });
         recyclerView.setAdapter(cuisinesAdapter);
 
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        top_products.setLayoutManager(layoutManager1);
+        top_products.setAdapter(adapter);
     }
 
     @Override
@@ -88,5 +96,10 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
         Intent intent = new Intent(MainActivity.this, Category.class);
         intent.putExtra("Cat_Name",name);
         startActivity(intent);
+    }
+
+    @Override
+    public void itemClicked(int position) {
+
     }
 }

@@ -36,6 +36,10 @@ public class Top_Product_Adapter extends RecyclerView.Adapter<Top_Product_Adapte
 
     @Override
     public void onBindViewHolder(@NonNull Product_VIewHolder holder, int position) {
+        Category_Items item = items.get(position);
+        holder.name.setText(item.getName());
+        holder.image.setImageResource(item.getImage());
+        holder.price.setText(item.getPrice());
 
     }
 
@@ -44,7 +48,7 @@ public class Top_Product_Adapter extends RecyclerView.Adapter<Top_Product_Adapte
         return items.size();
     }
 
-    public class Product_VIewHolder extends RecyclerView.ViewHolder {
+    public class Product_VIewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView image;
         public TextView name;
         public  TextView price;
@@ -58,6 +62,12 @@ public class Top_Product_Adapter extends RecyclerView.Adapter<Top_Product_Adapte
             this.price=itemView.findViewById(R.id.p_price);
             this.add=itemView.findViewById(R.id.p_add_btn);
             this.clickItem = clickItem;
+            add.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickItem.itemClicked(getAdapterPosition());
         }
     }
 

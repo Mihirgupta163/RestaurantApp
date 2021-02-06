@@ -32,7 +32,7 @@ public class Category extends AppCompatActivity implements Category_Adapter.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         toolbar = findViewById(R.id.cat_toolbar);
-        setSupportActionBar(toolbar);
+
 
         cart_details = new ArrayList<>();
         category_items = new ArrayList<>();
@@ -43,6 +43,7 @@ public class Category extends AppCompatActivity implements Category_Adapter.OnIt
         Intent i = getIntent();
         String cat_name = i.getStringExtra("Cat_Name");
         toolbar.setTitle(cat_name);
+        setSupportActionBar(toolbar);
 
 
         switch (cat_name){
@@ -80,12 +81,13 @@ public class Category extends AppCompatActivity implements Category_Adapter.OnIt
 
         Cart_Details cart = new Cart_Details(item.getName(),item.getPrice(),"1",item.getImage());
 
-        if(cart_details.get(position).equals(cart)){
+        if(cart_details.contains(cart)){
             Snackbar.make(findViewById(android.R.id.content),category_items.get(position).getName()+" again added to Cart",Snackbar.LENGTH_SHORT).show();
             String num = cart_details.get(position).getQuantity();
             int n = Integer.parseInt(num);
             cart_details.get(position).setQuantity(String.valueOf(n+1));
         }else{
+            cart_details.add(cart);
             Snackbar.make(findViewById(android.R.id.content),category_items.get(position).getName()+" added to Cart",Snackbar.LENGTH_SHORT).show();
         }
     }
