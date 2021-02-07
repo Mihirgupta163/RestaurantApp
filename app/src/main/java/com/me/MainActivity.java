@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +16,10 @@ import android.view.MenuItem;
 import com.google.android.material.snackbar.Snackbar;
 import com.me.adapters.CuisinesAdapter;
 import com.me.adapters.Top_Product_Adapter;
+import com.me.pojo.Cart_Details;
 import com.me.pojo.Category_Items;
 import com.me.pojo.Cuisines_Items;
+import com.me.pojo.MyApplication;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
     ArrayList<Category_Items> items;
     Top_Product_Adapter adapter;
     int currentItems, totalItems, scrollOutItem;
+    Application myApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
         setContentView(R.layout.activity_main);
         cuisines_items = new ArrayList<>();
         items = new ArrayList<>();
+
+        myApplication = this.getApplication();
 
         top_products = findViewById(R.id.top_orders);
         recyclerView = findViewById(R.id.cuisine);
@@ -115,5 +121,6 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
     @Override
     public void itemClicked(int position) {
         Snackbar.make(findViewById(android.R.id.content),items.get(position).getName()+" added to Cart",Snackbar.LENGTH_SHORT).show();
+        MyApplication.cart_details.add(new Cart_Details(items.get(position).getName(),items.get(position).getPrice(),"1",items.get(position).getImage()));
     }
 }

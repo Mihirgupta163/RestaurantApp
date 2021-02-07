@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:padding="5dp"
+    >
+    <TextView
+        android:layout_gravity="center_vertical"
+        android:text="name"
+        android:textSize="12sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:paddingTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="5dp"
+        android:maxLines="3"
+        android:ellipsize="start"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/cart_list_item_name"
+        android:layout_weight="1.9"/>
+
+    <TextView
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginEnd="4dp"
+        android:text="x"
+        android:layout_width="0dp"
+        android:textColor="#51E357"
+        android:layout_height="match_parent"
+        android:layout_weight=".4"
+        android:id="@+id/cart_list_item_quantity"
+        />
+
+    <TextView
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="price"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/colorPrimaryVariant"
+        android:layout_height="match_parent"
+        android:id="@+id/cart_list_item_price"/>
+    <TextView
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:gravity="center"
+        android:text="total_price"
+        android:id="@+id/total_per_price"/>
+
+</LinearLayout>

@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.me.adapters.Category_Adapter;
 import com.me.pojo.Cart_Details;
 import com.me.pojo.Category_Items;
+import com.me.pojo.MyApplication;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ public class Category extends AppCompatActivity implements Category_Adapter.OnIt
     RecyclerView recyclerView;
     ArrayList<Category_Items> category_items;
     Category_Adapter category_adapter;
+    MyApplication myApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class Category extends AppCompatActivity implements Category_Adapter.OnIt
         setContentView(R.layout.activity_category);
         toolbar = findViewById(R.id.cat_toolbar);
 
+        myApplication = (MyApplication) this.getApplication();
 
         cart_details = new ArrayList<>();
         category_items = new ArrayList<>();
@@ -78,18 +81,9 @@ public class Category extends AppCompatActivity implements Category_Adapter.OnIt
     @Override
     public void onItemClick(int position) {
         Category_Items item = category_items.get(position);
-
+        Snackbar.make(findViewById(android.R.id.content),item.getName()+" added to Cart",Snackbar.LENGTH_SHORT).show();
         Cart_Details cart = new Cart_Details(item.getName(),item.getPrice(),"1",item.getImage());
-
-        if(cart_details.contains(cart)){
-            Snackbar.make(findViewById(android.R.id.content),category_items.get(position).getName()+" again added to Cart",Snackbar.LENGTH_SHORT).show();
-            String num = cart_details.get(position).getQuantity();
-            int n = Integer.parseInt(num);
-            cart_details.get(position).setQuantity(String.valueOf(n+1));
-        }else{
-            cart_details.add(cart);
-            Snackbar.make(findViewById(android.R.id.content),category_items.get(position).getName()+" added to Cart",Snackbar.LENGTH_SHORT).show();
-        }
+        MyApplication.cart_details.add(cart);
     }
 
     @Override
