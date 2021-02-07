@@ -133,16 +133,17 @@
         android:layout_height="match_parent"/>
 
 
-
     <Button
         android:id="@+id/Order_Now_Button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Order Now"
         android:textSize="20sp"
+        android:elevation="2dp"
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"
-        android:background="#009688"
+        android:background="#00946D"
         android:layout_margin="5dp"
-        />
+        android:clickable="true"
+        android:focusable="true" />
 </RelativeLayout>

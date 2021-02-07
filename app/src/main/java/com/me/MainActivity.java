@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
     Top_Product_Adapter adapter;
     int currentItems, totalItems, scrollOutItem;
     Application myApplication;
+    boolean lan = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
                 ,R.drawable.chole_bhature));
         items.add(new Category_Items("Stuffed Bati","180","This Rajasthani bread snack is cooked in ghee and served with chutney and dal. Bati is usually stuffed with paneer and spices."
                 ,R.drawable.bati));
+        items.add(new Category_Items("Margherita Pizza","150",
+                "Margherita Pizza is to many the true Italian flag. One of the most loved Italian dishes, it just takes a few simple ingredients and you get insanely delicious results! You just can't go wrong with that tomato, basil and fresh mozzarella combo."
+                ,R.drawable.margherita_pizza));
 
 
         cuisines_items.add( new Cuisines_Items("North Indian",R.drawable.north_indian));
@@ -102,11 +107,23 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         if (item.getItemId() == R.id.action_cart) {
             Intent intent = new Intent(MainActivity.this, Cart.class);
             startActivity(intent);
+        }
+        if( item.getItemId() == R.id.action_lang){
+            if( lan ){
+                item.setIcon(R.drawable.eng);
+                lan = false;
+            }else {
+                item.setIcon(R.drawable.hindi);
+                lan = true;
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }

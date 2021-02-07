@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="180dp"
     android:layout_height="210dp"
-    android:layout_margin="5dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="10dp"
+    android:layout_marginEnd="5dp"
     >
     <androidx.cardview.widget.CardView
+        android:layout_margin="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/card_view"
@@ -21,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="1.4"
+            android:weightSum="1.5"
             >
 
             <ImageView
@@ -33,7 +32,7 @@
                 android:contentDescription="TODO" />
 
                 <LinearLayout
-                    android:layout_weight="0.6"
+                    android:layout_weight="0.7"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:layout_width="match_parent"
@@ -81,16 +80,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Add to Cart"
-                            android:background="@color/colorPrimaryVariant"
+                            android:background="#FF6A3D"
                             android:gravity="center"
+                            android:clickable="true"
+                            android:enabled="true"
                             android:textStyle="bold"
+                            android:elevation="2dp"
                             android:textColor="@color/white"
-                            android:textSize="14sp"
-                            android:paddingTop="3dp"
+                            android:textSize="15sp"
+                            android:paddingTop="4dp"
                             android:paddingLeft="20dp"
-                            android:paddingBottom="3dp"
+                            android:paddingBottom="4dp"
                             android:paddingRight="20dp"
-                            />
+                            android:focusable="true" />
                     </FrameLayout>
                 </LinearLayout>
         </LinearLayout>
