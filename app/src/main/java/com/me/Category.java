@@ -72,7 +72,6 @@ public class Category extends AppCompatActivity implements Category_Adapter.OnIt
                 break;
         }
 
-
         category_adapter = new Category_Adapter(category_items,Category.this,Category.this);
         recyclerView.setAdapter(category_adapter);
 
