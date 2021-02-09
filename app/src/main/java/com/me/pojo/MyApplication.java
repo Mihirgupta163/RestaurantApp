@@ -7,6 +7,8 @@ import com.me.adapters.Cart_Adapter;
 import java.util.ArrayList;
 
 public class MyApplication extends Application {
+
+    public static String lan = "en";
     public static ArrayList<Cart_Details> cart_details = new ArrayList<>();
 
     public static ArrayList<Cart_Details> getCart_details() {

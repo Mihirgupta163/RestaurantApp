@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">रेस्टोरेंट ऐप</string>
+    <string name="north_indian">नॉर्थ इंडियन</string>
+    <string name="south_indian">साउत इंडियन</string>
+    <string name="mexican">मेक्सिकन</string>
+    <string name="italian">इटालियन</string>
+    <string name="thai">थाई</string>
+    <string name="japanese">जपानीस</string>
+    <string name="chinese">चाइनीस</string>
+
+    <string name="chole">छोले भतूरे</string>
+    <string name="baati"> स्टफ्ड बाटी</string>
+    <string name="pizza">मार्जयिटा पिज़्ज़ा</string>
+</resources>

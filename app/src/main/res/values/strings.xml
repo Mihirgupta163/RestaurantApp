@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Restaurant App</string>
+    <string name="north_indian">North Indian</string>
+    <string name="south_indian">South Indian</string>
+    <string name="mexican">Mexican</string>
+    <string name="italian">Italian</string>
+    <string name="thai">Thai</string>
+    <string name="japanese">Japanese</string>
+    <string name="chinese">Chinese</string>
+
+    <string name="chole">Chole Bhature</string>
+    <string name="baati"> Stuffed Bati</string>
+    <string name="pizza">Margherita Pizza</string>
+
 </resources>

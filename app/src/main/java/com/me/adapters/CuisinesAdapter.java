@@ -88,6 +88,7 @@ public class CuisinesAdapter extends RecyclerView.Adapter <CuisinesAdapter.MainA
             if(mListener !=null){
                 int position=getAdapterPosition()% list.size();
                 String name = list.get(position ).getName();
+
                 if(position !=RecyclerView.NO_POSITION){
                     mListener.onItemClick(position,name);
                 }

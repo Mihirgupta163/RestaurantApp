@@ -21,10 +21,21 @@
         android:id="@+id/cart_list_item_name"
         android:layout_weight="1.9"/>
 
+    <Button
+        android:id="@+id/decrementButton"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="true"
+        android:textColor="@color/white"
+        android:text="-"
+        android:textSize="18sp" />
+
     <TextView
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:layout_marginEnd="4dp"
         android:text="x"
         android:layout_width="0dp"
@@ -33,6 +44,17 @@
         android:layout_weight=".4"
         android:id="@+id/cart_list_item_quantity"
         />
+
+    <Button
+        android:id="@+id/incrementButton"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:enabled="true"
+        android:textColor="@color/white"
+        android:text="+"
+        android:textSize="18sp"
+        android:focusable="true" />
 
     <TextView
         android:textStyle="bold"
@@ -54,4 +76,11 @@
         android:text="total_price"
         android:id="@+id/total_per_price"/>
 
+    <ImageView
+        android:id="@+id/delete_btn"
+        android:layout_weight="0.5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/_delete"
+        android:contentDescription="TODO" />
 </LinearLayout>

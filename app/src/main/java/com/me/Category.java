@@ -134,6 +134,7 @@ public class Category extends AppCompatActivity implements Category_Adapter.OnIt
         MyApplication.cart_details.add(cart);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.cat_menu,menu);

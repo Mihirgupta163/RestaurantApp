@@ -7,8 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +27,9 @@ import com.me.pojo.Cuisines_Items;
 import com.me.pojo.MyApplication;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
+import static com.me.pojo.MyApplication.lan;
 
 public class MainActivity extends AppCompatActivity implements CuisinesAdapter.OnItemClickListener, Top_Product_Adapter.ClickItem {
 
@@ -34,40 +41,45 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
     Top_Product_Adapter adapter;
     int currentItems, totalItems, scrollOutItem;
     Application myApplication;
-    boolean lan = false;
+    Context context;
+    Resources resources;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         cuisines_items = new ArrayList<>();
         items = new ArrayList<>();
 
         myApplication = this.getApplication();
+
+        context = MainActivity.this;
+        resources = MainActivity.this.getResources();
 
         top_products = findViewById(R.id.top_orders);
         recyclerView = findViewById(R.id.cuisine);
         toolbar = findViewById(R.id.menu_toolbar);
         setSupportActionBar(toolbar);
 
-        items.add(new Category_Items("Chole Bhature","120","" +
+        items.add(new Category_Items(resources.getString(R.string.chole),"120","" +
                 "Mouth-watering meal straight from the" +
                 " Punjabi kitchen - garma garam bhature with chickpeas cooked in assorted spices."
                 ,R.drawable.chole_bhature));
-        items.add(new Category_Items("Stuffed Bati","180","This Rajasthani bread snack is cooked in ghee and served with chutney and dal. Bati is usually stuffed with paneer and spices."
+        items.add(new Category_Items(resources.getString(R.string.baati),"180","This Rajasthani bread snack is cooked in ghee and served with chutney and dal. Bati is usually stuffed with paneer and spices."
                 ,R.drawable.bati));
-        items.add(new Category_Items("Margherita Pizza","150",
+        items.add(new Category_Items(resources.getString(R.string.pizza),"150",
                 "Margherita Pizza is to many the true Italian flag. One of the most loved Italian dishes, it just takes a few simple ingredients and you get insanely delicious results! You just can't go wrong with that tomato, basil and fresh mozzarella combo."
                 ,R.drawable.margherita_pizza));
 
 
-        cuisines_items.add( new Cuisines_Items("North Indian",R.drawable.north_indian));
-        cuisines_items.add( new Cuisines_Items("South Indian",R.drawable.south_indian));
-        cuisines_items.add( new Cuisines_Items("Mexican",R.drawable.mexican));
-        cuisines_items.add( new Cuisines_Items("Thai",R.drawable.thai_cuisine));
-        cuisines_items.add( new Cuisines_Items("Japanese",R.drawable.japanese_cuisine));
-        cuisines_items.add( new Cuisines_Items("Chinese",R.drawable.chinesefood));
-        cuisines_items.add( new Cuisines_Items("Italian",R.drawable.italian_cuisine));
+        cuisines_items.add( new Cuisines_Items(resources.getString(R.string.north_indian),R.drawable.north_indian));
+        cuisines_items.add( new Cuisines_Items(resources.getString(R.string.south_indian),R.drawable.south_indian));
+        cuisines_items.add( new Cuisines_Items(resources.getString(R.string.mexican),R.drawable.mexican));
+        cuisines_items.add( new Cuisines_Items(resources.getString(R.string.thai),R.drawable.thai_cuisine));
+        cuisines_items.add( new Cuisines_Items(resources.getString(R.string.japanese),R.drawable.japanese_cuisine));
+        cuisines_items.add( new Cuisines_Items(resources.getString(R.string.chinese),R.drawable.chinesefood));
+        cuisines_items.add( new Cuisines_Items(resources.getString(R.string.italian),R.drawable.italian_cuisine));
 
         adapter = new Top_Product_Adapter(MainActivity.this,items,MainActivity.this);
 
@@ -103,7 +115,15 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.cart,menu);
+        MenuItem item = menu.findItem(R.id.action_lang);
+        if(lan.equals("hi")){
+            item.setIcon(R.drawable.hindi);
+        }
+        else {
+            item.setIcon(R.drawable.eng);
+        }
         return true;
     }
 
@@ -116,12 +136,21 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
             startActivity(intent);
         }
         if( item.getItemId() == R.id.action_lang){
-            if( lan ){
-                item.setIcon(R.drawable.eng);
-                lan = false;
+            if( lan.equals("hi") ){
+                lan = "en";
+                setLocale(MainActivity.this, lan);
+                resources = MainActivity.this.getResources();
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                finish();
+
             }else {
-                item.setIcon(R.drawable.hindi);
-                lan = true;
+                lan = "hi";
+                setLocale(MainActivity.this, lan);
+                resources = MainActivity.this.getResources();
+
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                finish();
+
             }
 
         }
@@ -139,5 +168,14 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
     public void itemClicked(int position) {
         Snackbar.make(findViewById(android.R.id.content),items.get(position).getName()+" added to Cart",Snackbar.LENGTH_SHORT).show();
         MyApplication.cart_details.add(new Cart_Details(items.get(position).getName(),items.get(position).getPrice(),"1",items.get(position).getImage()));
+    }
+
+    public static void setLocale(Activity activity, String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 }
