@@ -17,6 +17,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ActionMenuView;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.me.adapters.CuisinesAdapter;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
     Top_Product_Adapter adapter;
     int currentItems, totalItems, scrollOutItem;
     Application myApplication;
+    TextView cartBadge;
     Context context;
     Resources resources;
 
@@ -118,6 +122,11 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
 
         getMenuInflater().inflate(R.menu.cart,menu);
         MenuItem item = menu.findItem(R.id.action_lang);
+        final MenuItem cart = menu.findItem(R.id.action_cart);
+
+        View actionBadge = cart.getActionView();
+        cartBadge = (TextView) actionBadge.findViewById(R.id.cart_badge);
+
         if(lan.equals("hi")){
             item.setIcon(R.drawable.hindi);
         }
@@ -168,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements CuisinesAdapter.O
     public void itemClicked(int position) {
         Snackbar.make(findViewById(android.R.id.content),items.get(position).getName()+" added to Cart",Snackbar.LENGTH_SHORT).show();
         MyApplication.cart_details.add(new Cart_Details(items.get(position).getName(),items.get(position).getPrice(),"1",items.get(position).getImage()));
+        cartBadge.setText(String.valueOf(MyApplication.cart_details.size()));
     }
 
     public static void setLocale(Activity activity, String languageCode) {
